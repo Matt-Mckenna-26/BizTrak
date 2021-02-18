@@ -55,12 +55,12 @@ module.exports.getLoggedInUser = (req, res) => {
     .then(user => res.json(user))
     .catch(err => res.status(400).json(err));
 }
-
-module.exports.addToUserWatchList = (req, res) => {
+//Controllers to add to the nested schemas (ie. tasks, meeting etc)
+module.exports.addContact= (req, res) => {
   let userId =  req.params.userId
-  User.findOneAndUpdate({_id: userId}, {$addToSet: {tickersTracked: req.body}}, {new: true, useFindAndModify:false, runValidators:true})
-    .then(newWatchList => {
-      res.send({newWatchList})
+  User.findOneAndUpdate({_id: userId}, {$addToSet: {contacts: req.body}}, {new: true, useFindAndModify:false, runValidators:true})
+    .then(newContact => {
+      res.send(newContact.contacts)
       }
     )
     .catch( err => {
@@ -69,6 +69,55 @@ module.exports.addToUserWatchList = (req, res) => {
     })
 };
 
+module.exports.addTask= (req, res) => {
+  let userId =  req.params.userId
+  User.findOneAndUpdate({_id: userId}, {$addToSet: {tasks: req.body}}, {new: true, useFindAndModify:false, runValidators:true})
+    .then(newTasks => {
+      res.send(newTasks.tasks)
+      }
+    )
+    .catch( err => {
+      console.log(err)
+      res.status(401).json(err)
+    })
+};
+
+module.exports.addMeeting= (req, res) => {
+  let userId =  req.params.userId
+  User.findOneAndUpdate({_id: userId}, {$addToSet: {meetings: req.body}}, {new: true, useFindAndModify:false, runValidators:true})
+    .then(newMeetings => {
+      res.send(newMeetings.meetings)
+      }
+    )
+    .catch( err => {
+      console.log(err)
+      res.status(401).json(err)
+    })
+};
+
+module.exports.addOrganization= (req, res) => {
+  let userId =  req.params.userId
+  User.findOneAndUpdate({_id: userId}, {$addToSet: {organizations: req.body}}, {new: true, useFindAndModify:false, runValidators:true})
+    .then(newOrganizations => {
+      res.send(newOrganizations.organizations)
+      }
+    )
+    .catch( err => {
+      console.log(err)
+      res.status(401).json(err)
+    })
+};
+
+
+
+
+
+
+
+
+
+
+//Controller to remove from the nested schemas( i.e. tasks meetings etc)
 module.exports.removeTickerFromWatchList = (req, res) => {
   let userId = req.params.userId
   User.findOneAndUpdate({_id: userId},{$pull: {tickersTracked: req.body}}, {new:true, useFindAndModify:false})

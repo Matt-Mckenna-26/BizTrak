@@ -14,6 +14,12 @@ module.exports = app => {
   app.get("/api/users/",authenticate, UserController.findAllUsers);
   app.get("/api/users/loggedin", authenticate, UserController.getLoggedInUser);
 
+  //routes for the user to modify thier user specific data (contacts, tasks, meetings etc)
+  app.put("/api/addContact/:userId", authenticate, UserController.addContact);
+  app.put("/api/addTask/:userId", authenticate, UserController.addTask);
+  app.put("/api/addMeeting/:userId", authenticate, UserController.addMeeting);
+  app.put("/api/addOrganization/:userId", authenticate, UserController.addOrganization);
+
 //left here for dev purposes when using postman
   app.get("/api/users/", UserController.findAllUsers);
   app.get("/api/users/:id", UserController.findOneSingleUser);

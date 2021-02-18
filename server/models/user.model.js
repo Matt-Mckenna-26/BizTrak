@@ -19,25 +19,8 @@ const TaskSchema = new mongoose.Schema({
 }, {timeStamps: true})
 
 
-const MeetingSchema = new mongoose.Schema({
-	title: {
-		type:String,
-		required: [true, 'meeting title is required']
-	},
-	time: {
-		type: Date,
-		required: [true, 'meeting time is required']
-	},
-	attendees: [ContactSchema]
-	,
-	notes:{
-		type:String,
-		maxLength: [500, 'Notes cannot exceed 500 chars']
-	}
-})
-
 const ContactSchema = new mongoose.Schema({
-	fistName: {
+	firstName: {
 		type:String,
 		required: [true, 'first name is required']
 	},
@@ -51,12 +34,34 @@ const ContactSchema = new mongoose.Schema({
 	},
 	email:{
 		type:String,
-		maxLength: [20, 'Email cannot exceed 20 chars']
+		maxLength: [40, 'Email cannot exceed 20 chars']
 	},
 	phone: {
 		type:String,
 		maxLength: [15, 'phone number too long']
 	},
+	notes:{
+		type:String,
+		maxLength: [500, 'Notes cannot exceed 500 chars']
+	}
+})
+
+
+
+
+const MeetingSchema = new mongoose.Schema({
+	title: {
+		type:String,
+		required: [true, 'meeting title is required']
+	},
+	time: {
+		type: Date,
+		required: [true, 'meeting time is required']
+	},
+	attendees: {
+		type: Array
+	}
+	,
 	notes:{
 		type:String,
 		maxLength: [500, 'Notes cannot exceed 500 chars']
@@ -72,7 +77,9 @@ const OrganizationSchema = new mongoose.Schema({
 		type: String,
 		required: [false]
 	},
-	contacts: [ContactSchema]
+	contacts: {
+		type:Array
+	}
 	,
 	email:{
 		type:String,
@@ -127,7 +134,7 @@ UserSchema.pre("validate", function(next) {
 });
 
 
-//Will use bcry to hash the password bfore saving it to the database
+//Will use bcrypt to hash the password bfore saving it to the database
 
 UserSchema.pre("save" , function(next) {
 	bcrypt
