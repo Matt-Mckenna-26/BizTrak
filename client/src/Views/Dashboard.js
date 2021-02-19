@@ -8,21 +8,24 @@ import ContactsCard from '../components/ContactsCard';
 import OrgsCard from '../components/OrgsCard';
 
 const DashBoard = () => {
-    const [loggedInUser, setLoggedInUser] = useState({})
+    const [loggedInUser, setLoggedInUser] = useState({});
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/loggedin', 
         {withCredentials:true})
             .then(res => {
                 setLoggedInUser(res.data)
+                setLoaded(true)
                 }
             ).catch( err => {
                 console.log({err})
-                navigate('/error')
             })}, [])
+
     return (
         <>
             <DashBoardHeader loggedInUser={loggedInUser}/>
-            <TasksCard/>
+            <TasksCard loggedInUser ={loggedInUser} loaded={loaded}/>
             <MeetingsCard/>
             <ContactsCard />
             <OrgsCard />

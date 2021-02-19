@@ -5,6 +5,7 @@ import LandingPage from './Views/LandingPage';
 import DashBoard from './Views/Dashboard';
 import ErrorPage from './Views/ErrorPage';
 import {Router} from '@reach/router';
+import TaskForm from './Views/TaskForm';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <LandingPage path='/'/>
         <DashBoard path='/dashboard'/>
         <ErrorPage path='/error'/>
+        <TaskForm path='/addTask/:userId'/>
       </Router>
     </div>
   );

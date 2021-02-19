@@ -3,7 +3,7 @@ import {Card} from 'react-bootstrap'
 
 const OrgsCard = () => {
     return (
-        <Card className='mx-lg-3 my-3 p-2 col-sm-10 col-lg-5 d-inline-block' style ={{height: '35rem'}}>
+        <Card className='mx-lg-3 my-3 p-1 col-sm-10 col-lg-5 d-inline-block' style ={{height: '35rem'}}>
             <Card.Body>
                 <Card.Title><h1>Your Organizations</h1></Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">View Top down info on a target...</Card.Subtitle>

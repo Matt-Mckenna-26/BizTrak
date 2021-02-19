@@ -46,15 +46,15 @@ module.exports.login = (req, res) => {
     })
     .catch(err => res.json(err));
 }
-
 //controller to get the currently logged in user
-
 module.exports.getLoggedInUser = (req, res) => {
   const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true });
   User.findById(decodedJWT.payload._id)
     .then(user => res.json(user))
     .catch(err => res.status(400).json(err));
 }
+
+
 //Controllers to add to the nested schemas (ie. tasks, meeting etc)
 module.exports.addContact= (req, res) => {
   let userId =  req.params.userId
@@ -109,20 +109,12 @@ module.exports.addOrganization= (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
 //Controller to remove from the nested schemas( i.e. tasks meetings etc)
-module.exports.removeTickerFromWatchList = (req, res) => {
+module.exports.removeContact = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {tickersTracked: req.body}}, {new:true, useFindAndModify:false})
-  .then(newWatchList => {
-    res.send({newWatchList})
+  User.findOneAndUpdate({_id: userId},{$pull: {contacts: req.body}}, {new:true, useFindAndModify:false})
+  .then(newContacts => {
+    res.send(newContacts.contacts)
     }
   )
   .catch( err => {
@@ -130,6 +122,52 @@ module.exports.removeTickerFromWatchList = (req, res) => {
     res.status(401).json(err)
   })
 };
+module.exports.removeTask = (req, res) => {
+  let userId = req.params.userId
+  User.findOneAndUpdate({_id: userId},{$pull: {tasks: req.body}}, {new:true, useFindAndModify:false})
+  .then(newContacts => {
+    res.send(newContacts.tasks)
+    }
+  )
+  .catch( err => {
+    console.log(err)
+    res.status(401).json(err)
+  })
+};
+module.exports.removeOrganization = (req, res) => {
+  let userId = req.params.userId
+  User.findOneAndUpdate({_id: userId},{$pull: {organizations: req.body}}, {new:true, useFindAndModify:false})
+  .then(newOrgs => {
+    res.send(newOrgs.organizations)
+    }
+  )
+  .catch( err => {
+    console.log(err)
+    res.status(401).json(err)
+  })
+};
+module.exports.removeMeeting = (req, res) => {
+  let userId = req.params.userId
+  User.findOneAndUpdate({_id: userId},{$pull: {meetings: req.body}}, {new:true, useFindAndModify:false})
+  .then(newMeetings => {
+    res.send(newMeetings.meetings)
+    }
+  )
+  .catch( err => {
+    console.log(err)
+    res.status(401).json(err)
+  })
+};
+
+
+
+
+
+
+
+
+
+
 
 module.exports.LogOut = (req, res) => {
   res
