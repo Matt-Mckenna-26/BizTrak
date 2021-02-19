@@ -26,7 +26,7 @@ const DashBoard = () => {
         <>
             <DashBoardHeader loggedInUser={loggedInUser}/>
             <TasksCard loggedInUser ={loggedInUser} loaded={loaded}/>
-            <MeetingsCard/>
+            <MeetingsCard loggedInUser ={loggedInUser} loaded={loaded}/>
             <ContactsCard />
             <OrgsCard />
         </>

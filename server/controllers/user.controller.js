@@ -158,15 +158,12 @@ module.exports.removeMeeting = (req, res) => {
     res.status(401).json(err)
   })
 };
-
-
-
-
-
-
-
-
-
+// read an individual nested field 
+module.exports.getTask = (req, res) => {
+	User.findOne({ _id: req.params.id })
+  .then(user => res.send(user.tasks.id(req.params.taskid)))
+  .catch(err => res.status(400).send(err))
+}
 
 
 module.exports.LogOut = (req, res) => {

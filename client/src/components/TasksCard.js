@@ -11,7 +11,7 @@ const TasksCard = ({loggedInUser, loaded}) => {
                     <Card.Title><h1>Your Tasks</h1></Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">What do you have to get done today?</Card.Subtitle>
                     <Button className='btn btn-sm btn-success m-2'>
-                        <Link to={`/addTask/${loggedInUser._id}`} className='text-light'>Add a Task</Link>
+                        <Link to={`/addTask/${loggedInUser._id}`} className='text-light text-decoration-none'>Add a Task</Link>
                     </Button>
                         <Card.Text className ='mt-4' style={{height:'25rem', overflow:'scroll'}}>
                             <TaskList loggedInUser={loggedInUser} loaded={loaded}/>

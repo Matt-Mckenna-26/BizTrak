@@ -20,6 +20,8 @@ module.exports = app => {
   app.put("/api/addMeeting/:userId", authenticate, UserController.addMeeting);
   app.put("/api/addOrganization/:userId", authenticate, UserController.addOrganization);
 
+  app.get("/api/viewTask/:id/:taskid", authenticate, UserController.getTask);
+
 //left here for dev purposes when using postman
   app.get("/api/users/", UserController.findAllUsers);
   app.get("/api/users/:id", UserController.findOneSingleUser);

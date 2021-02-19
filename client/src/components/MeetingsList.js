@@ -10,14 +10,15 @@ import { Button } from 'react-bootstrap';
 import {Link} from '@reach/router';
 import { Checkbox } from '@material-ui/core';
 
-const TaskList = ({loggedInUser, loaded}) => {
-    let userTasks = loggedInUser.tasks
+const MeetingsList = ({loggedInUser, loaded}) => {
+    let userMeetings = loggedInUser.meetings
 
     const formatDate = (date) => {
         const options = {
-            year: "2-digit",
             month:"2-digit",
-            day:"2-digit"
+            day:"2-digit",
+            timeZone: "America/New_York",
+            hour: 'numeric'
             }
         return new Date(date).toLocaleDateString("en-US",options)
     }
@@ -27,21 +28,21 @@ const TaskList = ({loggedInUser, loaded}) => {
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell>Tasks</TableCell>
-                    <TableCell align="right">Due Date</TableCell>
+                    <TableCell>Meetings</TableCell>
+                    <TableCell align="right">Date/Time</TableCell>
                     <TableCell align="right">Complete?</TableCell>
                 </TableRow>
                 </TableHead>
                 {loaded === true ? 
                     <TableBody>
-                    {userTasks.map((task, idx) => {
-                        let formattedTaskdate = formatDate(task.dueDate);
+                    {userMeetings.map((meeting, idx) => {
+                        let formattedMeetingDate = formatDate(meeting.time);
                         return(
                         <TableRow key={idx}>
                             <TableCell component="th" scope="row">
-                                <Link to={`/viewTask/${loggedInUser._id}/${task._id}`}>{task.title}</Link>
+                                <Link to='/'>{meeting.title}</Link>
                             </TableCell>
-                            <TableCell align="right">{formattedTaskdate}</TableCell>
+                            <TableCell align="right">{formattedMeetingDate}</TableCell>
                             <TableCell align="right">
                                 <Checkbox />
                             </TableCell>
@@ -56,4 +57,4 @@ const TaskList = ({loggedInUser, loaded}) => {
     )
 }
 
-export default TaskList
+export default MeetingsList
