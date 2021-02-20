@@ -7,6 +7,7 @@ import ErrorPage from './Views/ErrorPage';
 import {Router} from '@reach/router';
 import TaskForm from './Views/TaskForm';
 import TaskView from './Views/TaskView';
+import MeetingView from './Views/MeetingView';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <ErrorPage path='/error'/>
         <TaskForm path='/addTask/:userId'/>
         <TaskView path='/viewTask/:userId/:taskId' />
+        <MeetingView path='/viewMeeting/:userId/:meetingId' />
       </Router>
     </div>
   );

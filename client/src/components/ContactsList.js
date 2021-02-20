@@ -10,42 +10,29 @@ import { Button } from 'react-bootstrap';
 import {Link} from '@reach/router';
 import { Checkbox } from '@material-ui/core';
 
-const MeetingsList = ({loggedInUser, loaded}) => {
-    let userMeetings = loggedInUser.meetings
-
-    const formatDate = (date) => {
-        const options = {
-            month:"2-digit",
-            day:"2-digit",
-            timeZone: "America/New_York",
-            hour: 'numeric'
-            }
-        return new Date(date).toLocaleDateString("en-US",options)
-    }
+const ContactsList = ({loggedInUser, loaded}) => {
+    let userContacts = loggedInUser.contacts
 
     return (
         <TableContainer component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell>Meetings</TableCell>
-                    <TableCell align="right">Date/Time</TableCell>
-                    <TableCell align="right">Complete?</TableCell>
+                    <TableCell>Contact</TableCell>
+                    <TableCell align="right">Email</TableCell>
+                    <TableCell align="right">Phone</TableCell>
                 </TableRow>
                 </TableHead>
                 {loaded === true ? 
                     <TableBody>
-                    {userMeetings.map((meeting, idx) => {
-                        let formattedMeetingDate = formatDate(meeting.time);
+                    {userContacts.map((contact, idx) => {
                         return(
                         <TableRow key={idx}>
                             <TableCell component="th" scope="row">
-                                <Link to={`/viewMeeting/${loggedInUser._id}/${meeting._id}`}>{meeting.title}</Link>
+                                <Link to={`/viewContact/${loggedInUser._id}/${contact._id}`}>{contact.name}</Link>
                             </TableCell>
-                            <TableCell align="right">{formattedMeetingDate}</TableCell>
-                            <TableCell align="right">
-                                <Checkbox />
-                            </TableCell>
+                            <TableCell align="right">{contact.email}</TableCell>
+                            <TableCell align="right">{contact.phone}</TableCell>
                         </TableRow>
                             )
                         })
@@ -57,4 +44,4 @@ const MeetingsList = ({loggedInUser, loaded}) => {
     )
 }
 
-export default MeetingsList
+export default ContactsList

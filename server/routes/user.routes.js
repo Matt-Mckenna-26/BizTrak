@@ -20,7 +20,14 @@ module.exports = app => {
   app.put("/api/addMeeting/:userId", authenticate, UserController.addMeeting);
   app.put("/api/addOrganization/:userId", authenticate, UserController.addOrganization);
 
+  //routes for the user to read a specific neted subdoc 
   app.get("/api/viewTask/:id/:taskid", authenticate, UserController.getTask);
+  app.get("/api/viewMeeting/:id/:meetingid", authenticate, UserController.getMeeting);
+  app.get("/api/viewContact/:id/:contactid", authenticate, UserController.getContact);
+  app.get("/api/viewOrganization/:id/:organizationid", authenticate, UserController.getOrganization);
+
+
+
 
 //left here for dev purposes when using postman
   app.get("/api/users/", UserController.findAllUsers);

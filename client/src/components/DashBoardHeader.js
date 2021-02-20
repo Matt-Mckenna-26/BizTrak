@@ -15,8 +15,8 @@ const DashBoardHeader = ({loggedInUser}) => {
 
     return(
         <>
-            <h1 className='m-3 text-primary'>Welcome to Biztrak, {loggedInUser.username}</h1>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} color='primary' variant='outlined' className='d-block mx-auto'>
+            <h1 className='m-3 text-light'>Welcome to Biztrak, {loggedInUser.username}</h1>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} color='default' variant='contained' className='d-block mx-auto'>
             Navigate Your Dashboard
             </Button>
             <Menu

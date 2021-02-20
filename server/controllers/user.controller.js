@@ -164,6 +164,32 @@ module.exports.getTask = (req, res) => {
   .then(user => res.send(user.tasks.id(req.params.taskid)))
   .catch(err => res.status(400).send(err))
 }
+module.exports.getMeeting = (req, res) => {
+	User.findOne({ _id: req.params.id })
+  .then(user => res.send(user.meetings.id(req.params.meetingid)))
+  .catch(err => res.status(400).send(err))
+}
+module.exports.getContact = (req, res) => {
+	User.findOne({ _id: req.params.id })
+  .then(user => res.send(user.contacts.id(req.params.contactid)))
+  .catch(err => res.status(400).send(err))
+}
+module.exports.getOrganization = (req, res) => {
+	User.findOne({ _id: req.params.id })
+  .then(user => res.send(user.organizations.id(req.params.organizationid)))
+  .catch(err => res.status(400).send(err))
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports.LogOut = (req, res) => {

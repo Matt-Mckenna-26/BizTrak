@@ -20,13 +20,9 @@ const TaskSchema = new mongoose.Schema({
 
 
 const ContactSchema = new mongoose.Schema({
-	firstName: {
+	name: {
 		type:String,
 		required: [true, 'first name is required']
-	},
-	lastName: {
-		type: String,
-		required: [true, 'Last name is required']
 	},
 	position: {
 		type:String,
