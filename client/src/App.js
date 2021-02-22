@@ -15,6 +15,7 @@ import OrgView from './Views/OrgView';
 import MeetingForm from './Views/MeetingForm';
 import ContactForm from './Views/ContactForm';
 import OrgForm from './Views/OrgForm';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
         <ContactView path='/viewContact/:userId/:contactId' />
         <OrgView path ='/viewOrg/:userId/:orgId' />
       </Router>
+      <Footer/>
     </div>
   );
 }

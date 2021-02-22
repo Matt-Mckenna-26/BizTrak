@@ -11,6 +11,22 @@ const ContactView = (props) => {
     const {userId} = props
     const {contactId} = props
 
+    const removeContact = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/deleteContact/${userId}`, {contactId: contact._id}, 
+            {
+            withCredentials: true
+            }
+        ).then (res => {
+            console.log(res)
+            navigate('/dashboard')
+        })
+                .catch(err => console.log(err))
+        .catch( err => {
+            console.log({err});
+        })
+    }
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/viewContact/${userId}/${contactId}`, 
         {withCredentials:true})
@@ -24,7 +40,7 @@ const ContactView = (props) => {
 
     return (
         <div className='p-5'>
-            <Card style ={{width: '40rem'}} className='mx-auto'>
+            <Card className='mx-auto col-11' className='mx-auto'>
                 {loaded === true ? 
                 <Card.Body>
                         <Card.Title><h1>{contact.name}</h1></Card.Title>
@@ -35,6 +51,7 @@ const ContactView = (props) => {
                                 <h3>Notes : {contact.notes}</h3>
                             </Card.Text>
                             <Button className='btn btn-md' variant='primary'><Link to='/dashboard' className='text-light text-decoration-none'>Back to DashBoard</Link></Button>
+                            <Button className='btn btn-md m-2' variant='outline-danger' onClick={removeContact}>Delete Contact</Button>
                     </Card.Body>
                     : null
                 }

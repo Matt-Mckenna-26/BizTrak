@@ -11,6 +11,22 @@ const OrgView = (props) => {
     const {userId} = props
     const {orgId} = props
 
+    const removeOrg = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/deleteOrg/${userId}`, {organizationId: org._id}, 
+            {
+            withCredentials: true
+            }
+        ).then (res => {
+            console.log(res)
+            navigate('/dashboard')
+        })
+                .catch(err => console.log(err))
+        .catch( err => {
+            console.log({err});
+        })
+    }
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/viewOrganization/${userId}/${orgId}`, 
         {withCredentials:true})
@@ -24,7 +40,7 @@ const OrgView = (props) => {
 
     return (
         <div className='p-5'>
-            <Card style ={{width: '40rem'}} className='mx-auto'>
+            <Card className='mx-auto col-11' className='mx-auto'>
                 {loaded === true ? 
                 <Card.Body>
                         <Card.Title><h1>{org.name}</h1></Card.Title>
@@ -40,6 +56,7 @@ const OrgView = (props) => {
                                 <p>Notes : {org.notes}</p>
                             </Card.Text>
                             <Button className='btn btn-md' variant='primary'><Link to='/dashboard' className='text-light text-decoration-none'>Back to DashBoard</Link></Button>
+                            <Button className='btn btn-md m-2' variant='outline-danger' onClick={removeOrg}>Delete Organization</Button>
                     </Card.Body>
                     : null
                 }

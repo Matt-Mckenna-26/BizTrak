@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {navigate} from '@reach/router';
+import {Badge} from 'react-bootstrap';
 import {Menu, Button, MenuItem} from '@material-ui/core'
+import Logo from '../Images/BizTrak.png'
 
 const DashBoardHeader = ({loggedInUser, logout}) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -15,10 +17,13 @@ const DashBoardHeader = ({loggedInUser, logout}) => {
 
     return(
         <div className='mb-5 pt-3'>
-            <h1 className='mb-4 pt-3 text-light'>Welcome to Biztrak, {loggedInUser.username}</h1>
+            <Badge pill variant='light' className='d-block my-3 text-primary mx-auto text-center col-10' style={{height:'7rem'}}>
+                <h1 className='align-top'>Welcome to Biztrak, <br/>{loggedInUser.username}</h1>
+            </Badge>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} color='default' variant='contained' className='d-block mx-auto'>
-            Navigate Your Dashboard
+            Navigate Your Dashboard Here
             </Button>
+            <img src={Logo} style={{width:'15rem'}} className='m-3'/>
             <Menu
             anchorEl={anchorEl}
             keepMounted

@@ -50,7 +50,7 @@ const MeetingView = (props) => {
 
     return (
         <div className='p-5'>
-            <Card style ={{width: '40rem'}} className='mx-auto'>
+            <Card className='mx-auto col-11'>
                 {loaded === true ? 
                 <Card.Body>
                         <Card.Title><h1>{meeting.title}</h1></Card.Title>
