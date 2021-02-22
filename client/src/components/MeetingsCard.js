@@ -10,7 +10,7 @@ const MeetingsCard = ({loggedInUser, loaded}) => {
                 <Card.Title><h1>Your Meetings</h1></Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Whose on the Calendar?</Card.Subtitle>
                 <Button className='btn btn-sm btn-success m-2'>
-                        <Link to={`/addTask/${loggedInUser._id}`} className='text-light text-decoration-none'>Add a Meeting</Link>
+                        <Link to={`/addMeeting/${loggedInUser._id}`} className='text-light text-decoration-none'>Add a Meeting</Link>
                 </Button>
                     <Card.Text style={{height:'25rem', overflow:'scroll'}}>
                         <MeetingsList loggedInUser={loggedInUser} loaded={loaded}/>

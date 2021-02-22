@@ -18,7 +18,8 @@ const MeetingsList = ({loggedInUser, loaded}) => {
             month:"2-digit",
             day:"2-digit",
             timeZone: "America/New_York",
-            hour: 'numeric'
+            hour: 'numeric',
+            minute: 'numeric'
             }
         return new Date(date).toLocaleDateString("en-US",options)
     }
@@ -30,7 +31,6 @@ const MeetingsList = ({loggedInUser, loaded}) => {
                 <TableRow>
                     <TableCell>Meetings</TableCell>
                     <TableCell align="right">Date/Time</TableCell>
-                    <TableCell align="right">Complete?</TableCell>
                 </TableRow>
                 </TableHead>
                 {loaded === true ? 
@@ -43,9 +43,6 @@ const MeetingsList = ({loggedInUser, loaded}) => {
                                 <Link to={`/viewMeeting/${loggedInUser._id}/${meeting._id}`}>{meeting.title}</Link>
                             </TableCell>
                             <TableCell align="right">{formattedMeetingDate}</TableCell>
-                            <TableCell align="right">
-                                <Checkbox />
-                            </TableCell>
                         </TableRow>
                             )
                         })

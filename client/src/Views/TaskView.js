@@ -18,7 +18,22 @@ const TaskView = (props) => {
     }
     const {userId} = props
     const {taskId} = props
-    console.log(userId, taskId);
+
+    const removeTask = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/deleteTask/${userId}`, {taskId: task._id}, 
+            {
+            withCredentials: true
+            }
+        ).then (res => {
+            console.log(res)
+            navigate('/dashboard')
+        })
+                .catch(err => console.log(err))
+        .catch( err => {
+            console.log({err});
+        })
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/viewTask/${userId}/${taskId}`, 
@@ -42,8 +57,9 @@ const TaskView = (props) => {
                             <h2>Due Date : {formatDate(task.dueDate)}</h2>
                             <h3>Notes : {task.notes}</h3>
                         </Card.Text>
-                        <Button className='btn btn-md' variant='primary'><Link to='/dashboard' className='text-light text-decoration-none'>Back to DashBoard</Link></Button>
-                </Card.Body>
+                        <Button className='btn btn-md m-2' variant='primary'><Link to='/dashboard' className='text-light text-decoration-none'>Back to DashBoard</Link></Button>
+                        <Button className='btn btn-md m-2' variant='outline-success' onClick={removeTask}>Complete</Button>
+            </Card.Body>
                 : null
             }
             </Card>

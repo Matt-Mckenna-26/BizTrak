@@ -10,7 +10,7 @@ const ContactsCard = ({loggedInUser, loaded}) => {
                 <Card.Title><h1>Your Contacts</h1></Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">View Contact details and add notes...</Card.Subtitle>
                 <Button className='btn btn-sm btn-success m-2'>
-                        <Link to={`/addTask/${loggedInUser._id}`} className='text-light text-decoration-none'>Add Contact</Link>
+                        <Link to={`/addContact/${loggedInUser._id}`} className='text-light text-decoration-none'>Add Contact</Link>
                 </Button>
                     <Card.Text style={{height:'25rem', overflow:'scroll'}}>
                             <ContactsList loggedInUser={loggedInUser} loaded={loaded} />

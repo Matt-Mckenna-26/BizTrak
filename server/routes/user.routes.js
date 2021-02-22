@@ -26,6 +26,12 @@ module.exports = app => {
   app.get("/api/viewContact/:id/:contactid", authenticate, UserController.getContact);
   app.get("/api/viewOrganization/:id/:organizationid", authenticate, UserController.getOrganization);
 
+  //routes to delete
+  app.put("/api/deleteTask/:userId", authenticate, UserController.removeTask);
+  app.put("/api/deleteMeeting/:userId", authenticate, UserController.removeMeeting);
+  app.put("/api/deleteContact/:userId", authenticate, UserController.removeContact);
+  app.put("/api/deleteOrg/:userId", authenticate, UserController.removeOrganization);
+
   app.put("/api/editTask/:id/:taskid", authenticate, UserController.updateTask);
 
 

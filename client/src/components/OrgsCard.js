@@ -10,7 +10,7 @@ const OrgsCard = ({loggedInUser, loaded}) => {
                 <Card.Title><h1>Your Organizations</h1></Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">View Top down info on a target...</Card.Subtitle>
                 <Button className='btn btn-sm btn-success m-2'>
-                    <Link to={`/addTask/${loggedInUser._id}`} className='text-light text-decoration-none p-5'>Add an Organization</Link>
+                    <Link to={`/addOrg/${loggedInUser._id}`} className='text-light text-decoration-none p-5'>Add an Organization</Link>
                 </Button>
                 <Card.Text style={{height:'25rem', overflow:'scroll'}}>
                     <OrgsList loggedInUser={loggedInUser} loaded={loaded}/>

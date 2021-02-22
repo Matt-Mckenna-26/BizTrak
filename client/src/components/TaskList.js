@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,11 +7,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from 'react-bootstrap';
-import {Link} from '@reach/router';
+import {Link, navigate} from '@reach/router';
 import { Checkbox } from '@material-ui/core';
+import axios from 'axios';
+import shadows from '@material-ui/core/styles/shadows';
 
 const TaskList = ({loggedInUser, loaded}) => {
     let userTasks = loggedInUser.tasks
+    const [taskList, setTaskList] = useState([loggedInUser.tasks])
 
     const formatDate = (date) => {
         const options = {
@@ -21,6 +24,19 @@ const TaskList = ({loggedInUser, loaded}) => {
             }
         return new Date(date).toLocaleDateString("en-US",options)
     }
+    const removeTask = (task) => {
+        axios.put(`http://localhost:8000/api/deleteTask/${loggedInUser._id}`, {taskId: task}, 
+            {
+            withCredentials: true
+            }
+        ).then (res => {
+            console.log(res)
+        })
+                .catch(err => console.log(err))
+        .catch( err => {
+            console.log({err});
+        })
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -29,7 +45,6 @@ const TaskList = ({loggedInUser, loaded}) => {
                 <TableRow>
                     <TableCell>Tasks</TableCell>
                     <TableCell align="right">Due Date</TableCell>
-                    <TableCell align="right">Complete?</TableCell>
                 </TableRow>
                 </TableHead>
                 {loaded === true ? 
@@ -42,9 +57,6 @@ const TaskList = ({loggedInUser, loaded}) => {
                                 <Link to={`/viewTask/${loggedInUser._id}/${task._id}`}>{task.title}</Link>
                             </TableCell>
                             <TableCell align="right">{formattedTaskdate}</TableCell>
-                            <TableCell align="right">
-                                <Checkbox />
-                            </TableCell>
                         </TableRow>
                             )
                         })

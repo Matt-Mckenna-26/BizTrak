@@ -112,50 +112,54 @@ module.exports.addOrganization= (req, res) => {
 //Controller to remove from the nested schemas( i.e. tasks meetings etc)
 module.exports.removeContact = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {contacts: req.body}}, {new:true, useFindAndModify:false})
-  .then(newContacts => {
-    res.send(newContacts.contacts)
+  User.findOneAndUpdate({_id: userId},{$pull: {contacts: {_id: req.body.contactId}}}, {new:true, useFindAndModify:false})
+  .then(newUser => {
+    res.send(newUser.contacts)
     }
   )
   .catch( err => {
     console.log(err)
-    res.status(401).json(err)
+    res.status(401).send({err})
   })
 };
+
+
 module.exports.removeTask = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {tasks: req.body}}, {new:true, useFindAndModify:false})
-  .then(newContacts => {
-    res.send(newContacts.tasks)
+  User.findOneAndUpdate({_id: userId},{$pull: {tasks: {_id: req.body.taskId}}}, {new:true, useFindAndModify:false})
+  .then(newUser => {
+    res.send(newUser.tasks)
     }
   )
   .catch( err => {
     console.log(err)
-    res.status(401).json(err)
+    res.status(401).send({err})
   })
 };
+
+
 module.exports.removeOrganization = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {organizations: req.body}}, {new:true, useFindAndModify:false})
-  .then(newOrgs => {
-    res.send(newOrgs.organizations)
+  User.findOneAndUpdate({_id: userId},{$pull: {organizations: {_id: req.body.organizationId}}}, {new:true, useFindAndModify:false})
+  .then(newUser => {
+    res.send(newUser.organizations)
     }
   )
   .catch( err => {
     console.log(err)
-    res.status(401).json(err)
+    res.status(401).send({err})
   })
 };
 module.exports.removeMeeting = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {meetings: req.body}}, {new:true, useFindAndModify:false})
-  .then(newMeetings => {
-    res.send(newMeetings.meetings)
+  User.findOneAndUpdate({_id: userId},{$pull: {meetings: {_id: req.body.meetingId}}}, {new:true, useFindAndModify:false})
+  .then(newUser => {
+    res.send(newUser.meetings)
     }
   )
   .catch( err => {
     console.log(err)
-    res.status(401).json(err)
+    res.status(401).send({err})
   })
 };
 // read an individual nested field 

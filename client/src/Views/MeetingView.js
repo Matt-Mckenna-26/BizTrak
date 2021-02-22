@@ -13,12 +13,29 @@ const MeetingView = (props) => {
             month:"2-digit",
             day:"2-digit",
             timeZone: "America/New_York",
-            hour: 'numeric'
+            hour: 'numeric',
+            minute:'numeric'
             }
         return new Date(date).toLocaleDateString("en-US",options)
     }
     const {userId} = props
     const {meetingId} = props
+
+    const removeMeeting = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/deleteMeeting/${userId}`, {meetingId: meeting._id}, 
+            {
+            withCredentials: true
+            }
+        ).then (res => {
+            console.log(res)
+            navigate('/dashboard')
+        })
+                .catch(err => console.log(err))
+        .catch( err => {
+            console.log({err});
+        })
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/viewMeeting/${userId}/${meetingId}`, 
@@ -43,6 +60,7 @@ const MeetingView = (props) => {
                                 <h3>Notes : {meeting.notes}</h3>
                             </Card.Text>
                             <Button className='btn btn-md' variant='primary'><Link to='/dashboard' className='text-light text-decoration-none'>Back to DashBoard</Link></Button>
+                            <Button className='btn btn-md m-2' variant='outline-success' onClick={removeMeeting}>Complete</Button>
                     </Card.Body>
                     : null
                 }
