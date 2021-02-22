@@ -26,6 +26,8 @@ module.exports = app => {
   app.get("/api/viewContact/:id/:contactid", authenticate, UserController.getContact);
   app.get("/api/viewOrganization/:id/:organizationid", authenticate, UserController.getOrganization);
 
+  app.put("/api/editTask/:id/:taskid", authenticate, UserController.updateTask);
+
 
 
 

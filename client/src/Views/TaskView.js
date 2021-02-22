@@ -32,7 +32,8 @@ const TaskView = (props) => {
             })}, [])
 
     return (
-        <Card className='mt-5 p-5'>
+        <div className='p-5'>
+            <Card style ={{width: '40rem'}} className='mx-auto'>
             {loaded === true ? 
             <Card.Body>
                     <Card.Title><h1>{task.title}</h1></Card.Title>
@@ -45,7 +46,8 @@ const TaskView = (props) => {
                 </Card.Body>
                 : null
             }
-        </Card>
+            </Card>
+        </div>
     )
 }
 

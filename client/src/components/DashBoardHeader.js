@@ -3,7 +3,7 @@ import axios from 'axios';
 import {navigate} from '@reach/router';
 import {Menu, Button, MenuItem} from '@material-ui/core'
 
-const DashBoardHeader = ({loggedInUser}) => {
+const DashBoardHeader = ({loggedInUser, logout}) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (e) => {
@@ -14,8 +14,8 @@ const DashBoardHeader = ({loggedInUser}) => {
     };
 
     return(
-        <>
-            <h1 className='m-3 text-light'>Welcome to Biztrak, {loggedInUser.username}</h1>
+        <div className='mb-5 pt-3'>
+            <h1 className='mb-4 pt-3 text-light'>Welcome to Biztrak, {loggedInUser.username}</h1>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} color='default' variant='contained' className='d-block mx-auto'>
             Navigate Your Dashboard
             </Button>
@@ -25,13 +25,13 @@ const DashBoardHeader = ({loggedInUser}) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Tasks</MenuItem>
-                <MenuItem onClick={handleClose}>Meetings</MenuItem>
-                <MenuItem onClick={handleClose}>Contacts</MenuItem>
-                <MenuItem onClick={handleClose}>Organizations</MenuItem>
-                <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                <MenuItem onClick={handleClose}><a className='text-decoration-none text-dark' href='#tasks'>Tasks</a></MenuItem>
+                <MenuItem onClick={handleClose}><a className='text-decoration-none text-dark' href='#meetings'>Meetings</a></MenuItem>
+                <MenuItem onClick={handleClose}><a className='text-decoration-none text-dark' href='#contacts'>Contacts</a></MenuItem>
+                <MenuItem onClick={handleClose}><a className='text-decoration-none text-dark' href='#organizations'>Organizations</a></MenuItem>
+                <MenuItem onClick={handleClose && logout}>Log Out</MenuItem>
             </Menu>
-        </>
+        </div>
     )
 }
 

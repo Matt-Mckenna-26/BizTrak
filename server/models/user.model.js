@@ -18,7 +18,6 @@ const TaskSchema = new mongoose.Schema({
 	}
 }, {timeStamps: true})
 
-
 const ContactSchema = new mongoose.Schema({
 	name: {
 		type:String,
@@ -42,9 +41,6 @@ const ContactSchema = new mongoose.Schema({
 	}
 })
 
-
-
-
 const MeetingSchema = new mongoose.Schema({
 	title: {
 		type:String,
@@ -63,7 +59,6 @@ const MeetingSchema = new mongoose.Schema({
 		maxLength: [500, 'Notes cannot exceed 500 chars']
 	}
 })
-
 const OrganizationSchema = new mongoose.Schema({
 	name: {
 		type:String,
@@ -90,9 +85,7 @@ const OrganizationSchema = new mongoose.Schema({
 		maxLength: [500, 'Notes cannot exceed 500 chars']
 	}
 })
-
 // Defines the User Schema containing nested schemas (tasks, meetings etc) to create the Users document
-
 const UserSchema = new mongoose.Schema({
 	username: {
 		type: String,

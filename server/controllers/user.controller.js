@@ -179,6 +179,23 @@ module.exports.getOrganization = (req, res) => {
   .then(user => res.send(user.organizations.id(req.params.organizationid)))
   .catch(err => res.status(400).send(err))
 }
+// controllers to edit a nested field 
+module.exports.updateTask = (req, res) => {
+	User.findOneAndUpdate({_id: req.params.id, 'tasks._id': req.params.taskid }, 
+  {
+    $set: {
+      'tasks.$.title': req.body.title
+    }
+  }, {new:true, useFindAndModify:false})
+    .then(newUser => {res.send(newUser.tasks)})
+    .catch(err => res.send(err))
+}
+
+
+
+
+
+
 
 
 

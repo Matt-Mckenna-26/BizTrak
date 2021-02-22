@@ -6,7 +6,7 @@ import {Link} from '@reach/router'
 
 const TasksCard = ({loggedInUser, loaded}) => {
     return (
-            <Card className='mx-lg-3 my-3 p-2 col-sm-10 col-lg-5 d-inline-block' style ={{height: '40rem'}}>
+            <Card className='mx-lg-3 my-3 p-2 col-sm-10 col-lg-5 d-inline-block' id='tasks' style ={{height: '40rem'}}>
                 <Card.Body>
                     <Card.Title><h1>Your Tasks</h1></Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">What do you have to get done today?</Card.Subtitle>

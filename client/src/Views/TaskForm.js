@@ -28,8 +28,8 @@ const TaskForm = (props) => {
     }
 
     return (
-        <div>
-                <h1>Add another Task to your agenda.</h1>
+        <div className='text-light'>
+                <h1 className='text-light pt-5'>Add Task</h1>
                 <Form className='mx-auto col-10 align-right p-5'>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
@@ -44,6 +44,7 @@ const TaskForm = (props) => {
                         <Form.Control as='textarea' rows={3} onChange={(e)=> setNotes(e.target.value)}/>
                     </Form.Group>
                     <Button onClick={addTask}>Add Task</Button>
+                    <Button className ='m-3 btn btn-danger' onClick={(e)=> navigate('/dashboard')}>Cancel</Button>
                 </Form>
         </div>
     )

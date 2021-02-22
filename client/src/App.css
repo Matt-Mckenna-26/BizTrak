@@ -42,3 +42,7 @@
 #simple-menu {
   display:block;
 }
+
+html, body
+{ font-size: calc(.7em + .7vw) ;
+}

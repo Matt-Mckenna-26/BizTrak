@@ -7,7 +7,7 @@ import MeetingsCard from '../components/MeetingsCard';
 import ContactsCard from '../components/ContactsCard';
 import OrgsCard from '../components/OrgsCard';
 
-const DashBoard = () => {
+const DashBoard = ({logout}) => {
     const [loggedInUser, setLoggedInUser] = useState({});
     const [loaded, setLoaded] = useState(false);
 
@@ -24,7 +24,7 @@ const DashBoard = () => {
 
     return (
         <>
-            <DashBoardHeader loggedInUser={loggedInUser}/>
+            <DashBoardHeader loggedInUser={loggedInUser} logout={logout}/>
             <TasksCard loggedInUser ={loggedInUser} loaded={loaded}/>
             <MeetingsCard loggedInUser ={loggedInUser} loaded={loaded}/>
             <ContactsCard loggedInUser ={loggedInUser} loaded={loaded}/>
